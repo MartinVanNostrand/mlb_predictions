@@ -1,6 +1,5 @@
 #!/bin/python3
 
-# TODO: remove spaces from team names for logo display (e.g. White Sox)
 # TODO: calculate points totals IF actual column is populated
 # TODO: config file with sizes of prediction tables and stats tolerances
 # TODO: handle style sheet
@@ -8,6 +7,7 @@
 
 import math
 import numpy
+import sys
 
 ###############################################################################
 ### TOP OF PAGE ###
@@ -73,7 +73,7 @@ def standings_table(f, people, data, actuals, total_points):
             bg = ""
             
             f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + size + "% height=" + size +"% src=\"logos_" + YEAR + "/" + team +".jpg\">\n")
-            f.write("<td class=\"MYTABLE\">\n")
+        f.write("<td class=\"MYTABLE\">\n")
 
     points_table(f, len(people), points)
     total_points = [x+y for x,y in zip(points, total_points)]
@@ -129,7 +129,13 @@ def awards_table(f, people, data, actuals, total_points):
             last =  player.strip().split(' ')[1:]
             bg = ""
 
-            f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + ww + " height=" + hh +" src=\"" + location + "_" + YEAR + "/" + last[0].lower() +".jpg\"><br><font size=0.5>" + first[0] + ". " + ' '.join(last) + "</font>\n")
+            if "MotY" in category:
+                (last, team) = ' '.join(last).split('&')
+                team = team.lower().strip().replace(' ', '')  
+                f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + ww + " height=" + hh +" src=\"" + location + "_" + YEAR + "/" + team +".jpg\"><br><font size=0.5>" + first[0] + ". " + last + "</font>\n")
+            else:
+                f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + ww + " height=" + hh +" src=\"" + location + "_" + YEAR + "/" + last[0].lower() +".jpg\"><br><font size=0.5>" + first[0] + ". " + ' '.join(last) + "</font>\n")
+
         f.write("<td class=\"MYTABLE\">")
     points_table(f, len(people), points)
     total_points = [x+y for x,y in zip(points, total_points)]
@@ -161,7 +167,7 @@ def stats_table(f, people, data, actuals, total_points):
 
 def anything_else_table(f, people, data):
     f.write("<table class=\"MYSMALLTABLE\" width=\"50%\">\n")
-    f.write("<tr class=\"MYSIDES\"><th></th><th>Anything Else</th>\n")    
+    f.write("<tr class=\"MYSIDES\"><th></th><th>Anything Else</th>\n")
     for idx, pred in enumerate(data['Anything Else']):
         if pred.strip():
             f.write("<tr class=\"MYTABLE\"><td class=\"MYSMALLSIDES\">" + people[idx] + "\n")
@@ -196,7 +202,7 @@ def champs_table(f):
     f.write("<th> <font color=\"#E8E8E8\">Champion</font>\n")
     f.write("<th> <font color=\"#E8E8E8\">Points</font>\n")
     f.write("<th> <font color=\"#E8E8E8\">Results</font>\n")
-    with open('champs.csv', 'r') as q:
+    with open('data/champs.csv', 'r') as q:
         for line in q:
             year = line.split(',')[0].strip()
             name = line.split(',')[1].strip()
@@ -213,70 +219,83 @@ def champs_table(f):
 ############################################################################### 
 ### MAIN
 
-### Read from data file
-standings = {}
-playoffs = {}
-awards = {}
-stats = {}
-anything = {}
+def main():
+    global YEAR
 
-# This is the total number of items per category. Don't change it.
-standings_size = 10 #10
-playoffs_size = 3 #3
-awards_size = 6 #10
-stats_size = 7 #7
+    ### Read from data file
+    standings = {}
+    playoffs = {}
+    awards = {}
+    stats = {}
+    anything = {}
 
-ii = 0
-first = True
-with open('predictions.csv', 'r') as f:
-    for line in f:
-        if line[0] != '#':
-            line = line.strip()
-            if first:
-                YEAR = line.split(',')[0]
-                people = [p.strip() for p in line.split(',')[1:]]
-                first = False
-            else:
-                line_as_array = line.split(',')
-                if ii >= 0 and ii < standings_size:
-                    standings[line_as_array[0]] = line_as_array[1:]
-                elif standings_size <= ii < standings_size + playoffs_size:
-                    playoffs[line_as_array[0]] = line_as_array[1:]
-                elif standings_size + playoffs_size <= ii < standings_size + playoffs_size + awards_size:
-                    awards[line_as_array[0]] = line_as_array[1:]
-                elif standings_size + playoffs_size + awards_size <= ii < standings_size + playoffs_size + awards_size + stats_size:
-                    stats[line_as_array[0]] = line_as_array[1:]
-                elif standings_size + playoffs_size + awards_size + stats_size <= ii < standings_size + playoffs_size + awards_size + stats_size + 1:
-                    anything[line_as_array[0]] = line_as_array[1:]
-                ii += 1
+    # This is the total number of items per category. Don't change it.
+    standings_size = 10 #10
+    playoffs_size = 3 #3
+    awards_size = 8 #8
+    stats_size = 7 #7
 
-actuals = {}            
-#with open('winners.csv', 'r') as f:
+
+    if len(sys.argv) != 2:
+        print("usage: ./genpred_bare.py <data_file_name>")
+        sys.exit()
+
+    datafile = sys.argv[1]
+    ii = 0
+    first = True
+    with open(datafile, 'r') as f:
+        for line in f:
+            if line[0] != '#':
+                line = line.strip()
+                if first:
+                    YEAR = line.split(',')[0]
+                    people = [p.strip() for p in line.split(',')[1:]]
+                    first = False
+                else:
+                    line_as_array = line.split(',')
+                    if ii >= 0 and ii < standings_size:
+                        standings[line_as_array[0]] = line_as_array[1:]
+                    elif standings_size <= ii < standings_size + playoffs_size:
+                        playoffs[line_as_array[0]] = line_as_array[1:]
+                    elif standings_size + playoffs_size <= ii < standings_size + playoffs_size + awards_size:
+                        awards[line_as_array[0]] = line_as_array[1:]
+                    elif standings_size + playoffs_size + awards_size <= ii < standings_size + playoffs_size + awards_size + stats_size:
+                        stats[line_as_array[0]] = line_as_array[1:]
+                    elif standings_size + playoffs_size + awards_size + stats_size <= ii < standings_size + playoffs_size + awards_size + stats_size + 1:
+                        anything[line_as_array[0]] = line_as_array[1:]
+                    ii += 1
+
+    actuals = {}            
+#with open('data/winners.csv', 'r') as f:
 #    for line in f:
 #        if line[0] != '#':
 #            line = line.strip()
 #            actuals[line.split(',')[0]] = line.split(',')[1]        
 
-### Create ouptut file
-f = open('predictions_' + YEAR + '.html', 'w')
+    ### Create ouptut file
+    f = open('predictions_' + YEAR + '.html', 'w')
 
-### Top of page
-top_of_page(f)
+    ### Top of page
+    top_of_page(f)
 
-### Populate predictions
-total_points = [0] * len(people)
-total_points = standings_table(f, people, standings, actuals, total_points)
-total_points = playoffs_table(f, people, playoffs, actuals, total_points)
-total_points = awards_table(f, people, awards, actuals, total_points)
-total_points = stats_table(f, people, stats, actuals, total_points)
-#anything_else_table(f, people, anything)
+    ### Populate predictions
+    total_points = [0] * len(people)
+    total_points = standings_table(f, people, standings, actuals, total_points)
+    total_points = playoffs_table(f, people, playoffs, actuals, total_points)
+    total_points = awards_table(f, people, awards, actuals, total_points)
+    total_points = stats_table(f, people, stats, actuals, total_points)
+    anything_else_table(f, people, anything)
 
-### Totals
-totals_table(f, people, total_points)
+    ### Totals
+    totals_table(f, people, total_points)
 
-### Display champions table
-champs_table(f)
+    ### Display champions table
+    champs_table(f)
 
-### Close file
-f.write("</div>\n<br>\n<br>\n\n</html>\n")
-f.close()
+    ### Close file
+    f.write("</div>\n<br>\n<br>\n\n</html>\n")
+    f.close()
+
+if __name__ == "__main__":
+    global YEAR
+    main()

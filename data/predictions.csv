@@ -9,7 +9,7 @@ NL Central,,,,,,,,,,,
 NL East,,,,,,,,,,,
 NL Wildcard (Winner),,,,,,,,,,,
 NL Wildcard (Lost),,,,,,,,,,,
-ALCS,yankees&twins&6,yankees&astros&6,twins&yankees&7,rays&astros&6,yankees&astros&6,yankees&twins&6,yankees&astros&6,yankees&rays&5,rays&yankees&6,astros&yankees&6,astros&yankees&7
+ALCS,Yankees&Twins&6,Yankees&Astros&6,Twins&Yankees&7,Rays&Astros&6,Yankees&Astros&6,Yankees&Twins&6,Yankees&Astros&6,Yankees&Rays&5,Rays&Yankees&6,Astros&Yankees&6,Astros&Yankees&7
 NLCS,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t
 2020 WS Champion,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t,t&t&t
 AL MVP,Aaron Judge,Mike Trout,Mike Trout,Mike Trout,Alex Bregman,Francisco Lindor,Mike Trout,Mike Trout,Mike Trout,Mike Trout,Mike Trout
@@ -17,9 +17,9 @@ NL MVP,Ronald Acuna Jr,Ronald Acuna Jr,Ronald Acuna Jr,Ronald Acuna Jr,Ronald Ac
 AL Cy Young,Tyler Glasnow,Gerrit Cole,Gerrit Cole,Shane Bieber,Gerrit Cole,Gerrit Cole,Gerrit Cole,Gerrit Cole,Gerrit Cole,Chris Sale,Justin Verlander
 NL Cy Young,Walker Buehler,Jack Flaherty,Max Scherzer,Max Scherzer,Max Scherzer,Max Scherzer,Walker Buehler,Jacob deGrom,Jacob deGrom,Jacob deGrom,Kirby Yates
 AL RotY,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Luis Robert,Wander Franco,Luis Robert
-NL RotY,Gavin Lux,D. Carlson,Gavin Lux,Gavin Lux,Carter Kieboom,S. Akiyama,S. Akiyama,S. Akiyama,Gavin Lux,Gavin Lux,Gavin Lux
-#AL MotY,,,,,,,,,,,
-#NL MotY,,,,,,,,,,,
+NL RotY,Gavin Lux,Gavin Lux,Gavin Lux,Gavin Lux,Carter Kieboom,Gavin Lux,Gavin Lux,Gavin Lux,Gavin Lux,Gavin Lux,Gavin Lux
+AL MotY,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays,Charlie Montoyo&Blue Jays
+NL MotY,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers,Dave Roberts&Dodgers
 AL Batting Title,Mike&Trout&.326,DJ&Lemahieu&.340,DJ&Lemahieu&.345,DJ&Lemahieu&.332,Tim&Anderson&.330,Mike&Trout&.339,Jose&Altuve&.259,DJ&Lemahieu&.344,Mike&Trout &.355,Mike&Trout&.402,Jose&Altuve&.340
 NL Batting Title,Christian&Yelich&.340,Christian&Yelich&.363,Christian&Yelich&.339,Charlie&Blackmon&.332,Mookie&Betts&.335,Fernando&Tatis Jr&.340,Christian&Yellich&.347,Nolan&Arendao&.355,Christian&Yellich&.369,Freddie&Freeman&.400,Christian&Yelich&.350
 MLB Home Runs,Cody&Bellinger&19,Giancarlo&Stanton&20,Cody&Bellinger&17,Cody&Bellinger&17,Pete&Alonso&21,Giancarlo&Stanton&25,Cody&Bellinger&21,Cody&Bellinger&18,Pete&Alonso&20,Mike&Trout&17,Joey&Gallo&20
@@ -27,3 +27,4 @@ MLB RBI,Nolan&Arenado&45,Ronald&Acuna Jr&62,Freddie&Freeman&46,Anthony&Rendon&45
 MLB Stolen Bases,Ronald&Acuna Jr&15,Adalberto&Mondesi&22,Adalberto&Mondesi&16,Jonathan&Villar&16,Ronald&Acuna Jr&20,Mallex&Smith&17,Adalberto&Mondesi&18,Ronald&Acuna Jr &15,Mallex&Smith&19,Jonathan&Villar&20,Ronald&Acuna Jr&18
 Most Wins,Los Angeles&Dodgers&37,Los Angeles&Dodgers&39,New York&Yankees&37,Los Angeles&Dodgers&39,Los Angeles&Dodgers&39,New York&Yankees&45,Los Angeles&Dodgers&39,Los Angeles&Dodgers&41,Los Angeles&Dodgers&40,Los Angeles&Dodgers&44,Los Angeles&Dodgers&40
 Fewest Wins,Baltimore&Orioles & 18,Baltimore&Orioles & 20,Baltimore&Orioles&19,Baltimore&Orioles&20,Baltimore&Orioles&18,Pittsburgh&Pirates&20,Detroit&Tigers&20,Baltimore&Orioles&10,Baltimore&Orioles&20,Baltimore&Orioles&14,Baltimore&Orioles&19
+Anything Else, , ,It's gonna be a great baseball season.,,I own the predictions now. Muhaha.
