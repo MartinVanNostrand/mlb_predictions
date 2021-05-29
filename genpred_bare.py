@@ -72,7 +72,7 @@ def standings_table(f, people, data, actuals, total_points):
             team = team.lower().strip().replace(' ', '')
             bg = ""
             
-            f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + size + "% height=" + size +"% src=\"logos_" + YEAR + "/" + team +".jpg\">\n")
+            f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + size + "% height=auto src=\"logos_" + YEAR + "/" + team +".jpg\">\n")
         f.write("<td class=\"MYTABLE\">\n")
 
     points_table(f, len(people), points)
@@ -101,14 +101,15 @@ def playoffs_table(f, people, data, actuals, total_points):
             bg = ""
 
             if "Champion" in series:
-                f.write("<td class=\"MYTABLE\"><img border=" + border + " width=" + size + "% height=" + size +"% src=\"logos_" + YEAR + "/" + winner.lower().strip() +".jpg\"><br>in " + numGames.strip() +"\n")
+                f.write("<td class=\"MYTABLE\"><img border=" + border + " width=" + size + "% height=auto src=\"logos_" + YEAR + "/" + winner.lower().strip() +".jpg\"><br>in " + numGames.strip() +"\n")
             else:            
-                f.write("<td class=\"MYTABLE\"><img border=" + border + " width=" + size + "% height=" + size +"% src=\"logos_" + YEAR + "/" + winner.lower().strip() +".jpg\"><br>over<br>" + loser.strip() + "<br>in " + numGames.strip() +"\n")
+                f.write("<td class=\"MYTABLE\"><img border=" + border + " width=" + size + "% height=auto src=\"logos_" + YEAR + "/" + winner.lower().strip() +".jpg\"><br>over<br>" + loser.strip() + "<br>in " + numGames.strip() +"\n")
         f.write("<td class=\"MYTABLE\">\n")
     points_table(f, len(people), points)
     total_points = [x+y for x,y in zip(points, total_points)]
     return total_points
 
+# TODO: use first and last names for image names to avoid ambiguity
 def awards_table(f, people, data, actuals, total_points):
     global YEAR
     points = [0]*len(people)
