@@ -64,15 +64,18 @@ def standings_table(f, people, data, actuals, total_points):
     table_header(f, people)
     for div in data:
         f.write("<tr class=\"MYTABLE\"><td class=\"MYSIDES\" width=140>" + div + "\n")
-        if "Loser" in div:
+        if "Wild Cards" in div:
             size = "25"
+            for idx, teams in enumerate(data[div]):
+                teams = teams.lower().strip().replace(' ','').split('&')
+                bg = ""            
+                f.write("<td class=\"MYTABLE" + bg + "\"><img width=25% height=auto src=\"logos_" + YEAR + "/" + teams[0] +".jpg\"><img width=25% height=auto src=\"logos_" + YEAR + "/" + teams[1] +".jpg\"><img width=25% height=auto src=\"logos_" + YEAR + "/" + teams[2] +".jpg\">\n")            
         else:
             size = "50"
-        for idx, team in enumerate(data[div]):
-            team = team.lower().strip().replace(' ', '')
-            bg = ""
-            
-            f.write("<td class=\"MYTABLE" + bg + "\"><img width=" + size + "% height=auto src=\"logos_" + YEAR + "/" + team +".jpg\">\n")
+            for idx, team in enumerate(data[div]):
+                team = team.lower().strip().replace(' ', '')
+                bg = ""
+                f.write("<td class=\"MYTABLE" + bg + "\"><img width=50% height=auto src=\"logos_" + YEAR + "/" + team +".jpg\">\n")
         f.write("<td class=\"MYTABLE\">\n")
 
     points_table(f, len(people), points)
@@ -231,7 +234,7 @@ def main():
     anything = {}
 
     # This is the total number of items per category. Don't change it.
-    standings_size = 10 #10
+    standings_size = 8 #8
     playoffs_size = 3 #3
     awards_size = 8 #8
     stats_size = 7 #7
